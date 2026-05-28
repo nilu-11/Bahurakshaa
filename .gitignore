@@ -31,4 +31,5 @@ test-results/
 .vscode
 .codex
 .env
-.BENCHMARK_2
+BENCHMARK_2
+README_test
