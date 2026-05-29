@@ -15,7 +15,7 @@ export const ROUTE_PERMISSIONS: Record<string, AppRole[]> = {
   "/risk-map": ["admin", "ops", "analyst", "field", "viewer"],
   "/monitoring": ["admin", "ops", "analyst", "field"],
   "/alerts": ["admin", "ops", "analyst"],
-  "/citizen-reports": ["admin", "ops", "field"],
+  "/citizen-reports": ["admin", "ops", "field", "viewer"],
   "/data-sources": ["admin", "ops", "analyst"],
   "/about": ["admin", "ops", "analyst", "field", "viewer"],
 };
