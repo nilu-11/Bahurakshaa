@@ -98,9 +98,14 @@ const API_BASE =
   "http://127.0.0.1:8000";
 
 async function hazardFetch<T>(path: string, options?: RequestInit): Promise<T> {
+  const headers = new Headers(options?.headers);
+  if (options?.body && !headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json");
+  }
+
   const res = await fetch(`${API_BASE}${path}`, {
-    headers: { "Content-Type": "application/json" },
     ...options,
+    headers,
   });
 
   if (!res.ok) {

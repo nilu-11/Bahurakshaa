@@ -53,10 +53,10 @@ CREATE POLICY "Reports readable by staff"
   ON public.citizen_reports
   FOR SELECT
   USING (public.has_role(ARRAY['admin','ops','analyst','field','viewer']));
-CREATE POLICY "Reports insert by field"
+CREATE POLICY "Reports insert by field and viewers"
   ON public.citizen_reports
   FOR INSERT
-  WITH CHECK (public.has_role(ARRAY['admin','ops','field']));
+  WITH CHECK (public.has_role(ARRAY['admin','ops','field','viewer']));
 CREATE POLICY "Reports update by ops"
   ON public.citizen_reports
   FOR UPDATE

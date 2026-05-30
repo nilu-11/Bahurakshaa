@@ -14,10 +14,11 @@ export const ROUTE_PERMISSIONS: Record<string, AppRole[]> = {
   "/dashboard": ["admin", "ops", "analyst", "field", "viewer"],
   "/risk-map": ["admin", "ops", "analyst", "field", "viewer"],
   "/monitoring": ["admin", "ops", "analyst", "field"],
-  "/alerts": ["admin", "ops", "analyst"],
+  "/alerts": ["admin", "ops", "analyst", "field", "viewer"],
   "/citizen-reports": ["admin", "ops", "field", "viewer"],
   "/data-sources": ["admin", "ops", "analyst"],
   "/about": ["admin", "ops", "analyst", "field", "viewer"],
+  "/admin/users": ["admin"],
 };
 
 export function normalizeRole(value: string | null | undefined): AppRole {

@@ -9,6 +9,7 @@ import {
   Database,
   Info,
   X,
+  UserCog,
 } from "lucide-react";
 import { useAuth } from "@/components/auth/useAuth";
 import { cn } from "@/lib/utils";
@@ -21,6 +22,7 @@ const navItems = [
   { path: "/alerts", icon: AlertTriangle, label: "Alerts" },
   { path: "/citizen-reports", icon: Users, label: "Citizen Reports" },
   { path: "/data-sources", icon: Database, label: "Data Sources" },
+  { path: "/admin/users", icon: UserCog, label: "User Management" },
   { path: "/about", icon: Info, label: "About" },
 ];
 

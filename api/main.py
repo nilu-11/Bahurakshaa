@@ -527,6 +527,7 @@ app = FastAPI(title="Bahurakshaa ML API", version="0.1.0")
 DEFAULT_CORS_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:8080",
+    "http://0.0.0.0:8080",
     "http://192.168.1.7:8080",
     "http://192.168.1.79:8080",
 ]
@@ -540,9 +541,22 @@ cors_origins = [
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1|0\.0\.0\.0|192\.168\.\d+\.\d+)(:\d+)?$",
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=False,
 )
+
+
+@app.get("/")
+def root() -> dict[str, Any]:
+    return {
+        "status": "ok",
+        "service": "Bahurakshaa ML API",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
 
 try:
     flood_bundle = _load_model_bundle(FLOOD_MODEL_PATH)

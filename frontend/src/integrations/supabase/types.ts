@@ -50,6 +50,7 @@ export type Database = {
       citizen_reports: {
         Row: {
           created_at: string
+          created_by: string | null
           description: string
           id: string
           location_lat: number
@@ -61,6 +62,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          created_by?: string | null
           description: string
           id?: string
           location_lat: number
@@ -72,6 +74,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           description?: string
           id?: string
           location_lat?: number

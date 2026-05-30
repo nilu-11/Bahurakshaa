@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import NotFound from "./pages/NotFound";
 import { Suspense, lazy } from "react";
 import { Loader2 } from "lucide-react";
+import AlertNotificationBridge from "@/components/alerts/AlertNotificationBridge";
 
 // Lazy load pages for better performance
 const LandingPage = lazy(() => import("./pages/LandingPage"));
@@ -23,6 +24,7 @@ const DataSourcesPage = lazy(() => import("./pages/DataSourcesPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const DisastersPage = lazy(() => import("./pages/DisastersPage"));
+const AdminUsersPage = lazy(() => import("./pages/AdminUsersPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -135,6 +137,16 @@ function AnimatedRoutes() {
                   </PageTransition>
                 }
               />
+              <Route element={<RoleRoute allow={["admin"]} />}>
+                <Route
+                  path="/admin/users"
+                  element={
+                    <PageTransition>
+                      <AdminUsersPage />
+                    </PageTransition>
+                  }
+                />
+              </Route>
             </Route>
 
             <Route element={<RoleRoute allow={["admin", "ops", "analyst", "field"]} />}>
@@ -148,7 +160,7 @@ function AnimatedRoutes() {
               />
             </Route>
 
-            <Route element={<RoleRoute allow={["admin", "ops", "analyst"]} />}>
+            <Route element={<RoleRoute allow={["admin", "ops", "analyst", "field", "viewer"]} />}>
               <Route
                 path="/alerts"
                 element={
@@ -167,7 +179,7 @@ function AnimatedRoutes() {
               />
             </Route>
 
-            <Route element={<RoleRoute allow={["admin", "ops", "field"]} />}>
+            <Route element={<RoleRoute allow={["admin", "ops", "field", "viewer"]} />}>
               <Route
                 path="/citizen-reports"
                 element={
@@ -205,6 +217,7 @@ const App = () => (
               className: "bg-card border-border",
             }}
           />
+          <AlertNotificationBridge />
           <BrowserRouter>
             <AnimatedRoutes />
           </BrowserRouter>
